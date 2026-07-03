@@ -1,6 +1,6 @@
 # IBM 1620 PDF Part-List Desktop Application — Project Plan
 
-## 1. Purpose
+## 1. Purpose - 
 
 Build a local desktop application that reviews the IBM 1620 reference PDFs, extracts structured parts information, associates parts with IBM 1620 modules, and exports clean text/CSV files that can be opened in Excel later.
 
