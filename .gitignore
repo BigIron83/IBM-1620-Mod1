@@ -1,0 +1,26 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+*.pyc
+*.pyo
+*.pyd
+
+# Local app data
+data/cache/*
+!data/cache/.gitkeep
+data/extracted/*
+!data/extracted/.gitkeep
+data/exports/*
+!data/exports/.gitkeep
+data/exports/*.csv
+
+# Source artifacts that should remain local
+data/source_pdfs/*.pdf
+data/source_pdfs/*.PDF
+
+# Generated databases and images
+*.db
+*.sqlite
+*.sqlite3
+*.png

@@ -1,0 +1,547 @@
+
+
+
+
+
+
+IBM-StandardModularSystem-Neff7.pdf
+PDF
+
+IBM 1620 Plugging Charts.xlsx
+Spreadsheet
+
+IBM 1620 SMS Cards.xls
+Spreadsheet
+Using the attached items can you create a schematic for the IBM 1620
+
+Thought for 7m 42s
+Created a first-pass IBM 1620 SMS card-placement schematic from the attached plugging charts, SMS card catalog, and SMS packaging/card-format reference manual. The manual was used for the SMS card/socket conventions. 
+
+
+Files:
+
+
+
+The PDF includes gate maps for A1, A2, B1, B2, and D1, a card-code directory, ALD/reference grouping, and a guide for reading the position notation. I treated this as a card-placement and ALD-reference schematic, not a full pin-to-pin electrical schematic, because the attached charts do not include complete backplane wire/net lists.
+
+
+Thought for 12m 29s
+Updated the IBM 1620 schematic package and database using the Righto SMS card database at static.righto.com/sms. Righto’s index describes a database of 1,481 SMS cards, and its card detail pages include fields such as function, IBM part number, PCB number, pinout, references, and schematic-image links. 
+ 
+
+I linked the IBM 1620 plugging-chart placements to Righto card records where available, resolving 1,113 placements into 37 Righto card types. I also flagged several part-number/OCR-based normalizations, such as CAH → CAB, CE/CLYB/CECYB → CEYB, and YJR → YJB. The SMS manual remains the reference for SMS physical packaging, gate/chassis notation, and card/socket conventions. 
+
+
+Files:
+
+
+IBM_1620_SMS_updated_database.xlsx
+
+
+Summary
+Card Types
+Placements
+Pins
+Sources
+Gate Summary
+
+
+
+
+The schematic is still best described as a card-placement and card-level reference schematic, not a full wire-by-wire backplane schematic, because the available plugging charts do not provide complete backplane net wiring.
+
+
+
+1620_F_ALD_SN11093(1).pdf
+PDF
+This is a sample ALD and could be used to find wiring 
+
+Thought for 13m 23s
+Yes — I used the sample ALD to add a wiring-oriented layer to the IBM 1620 schematic/database. The ALD contains logic sheets such as ADD SUB COMP TR NO 11 with card blocks, signal labels, and cross-sheet page references, which makes it useful for tracing wiring candidates. 
+
+ I kept the SMS manual conventions for interpreting ALD/card-block notation. 
+
+ I also retained the Righto SMS card links/card-level data; that database describes 1,481 SMS card types. 
+
+What changed:
+
+Added ALD Logic Index records from the sample ALD.
+
+Added 2,033 extracted ALD card-block occurrences.
+
+Added 1,624 ALD signal cross-reference rows.
+
+Added 709 filtered candidate wiring associations.
+
+Enriched the 1,113 placement rows with ALD PDF page coverage and candidate wiring counts.
+
+These are still candidate wiring traces, not a verified point-to-point backplane netlist. The ALD OCR is noisy, so any wiring row should be checked against the rendered ALD page before use.
+
+Files:
+
+
+IBM_1620_SMS_ALD_wiring_update.xlsx
+
+
+Summary
+Placements
+ALD Logic Index
+Card Blocks
+Signal Refs
+Wiring Candidates
+Card Schem Index
+README
+
+
+
+
+
+
+
+227-5500-3_1620_Model_1_FEMM_Dec63.pdf
+PDF
+This file may help refine the schematics and related items
+
+
+Thought for 1m 2s
+Good catch. I incorporated Section 4 / Machine Locations from the 1620 Model 1 Field Engineering Maintenance Manual into the schematic package.
+
+Section 4 adds the missing physical-location layer: gate views, connector-location references, terminal-block notes, diode-board numbering, and power/control-location context. In particular, it explains how ALD connector-terminal codes decode, for example 01SCA01 = machine 01, shoe connector A, terminal 01, and notes that Gate C diodes are numbered 1-33 front-to-back/right-to-left when facing the front of the machine. 
+
+
+Updated files:
+
+
+IBM_1620_SMS_FEMM_section4_refined.xlsx
+
+
+README
+Placements_Refined
+FEMM_Figures
+FEMM_Locations
+FEMM_Connector_Codes
+FEMM_Power
+ALD_Wire_Candidates
+
+
+
+
+Supplemental extracted tables:
+
+
+
+
+
+
+This revision keeps the previous ALD-derived wiring candidates, but adds physical traceability: where the relevant gates, connectors, terminal blocks, relays, diode board, RC units, and power-distribution references are located in the actual 1620.
+
+
+Thought for 1m 47s
+Counted from the latest refined placement database, using canonical card type where available. That merges obvious OCR/part-number variants such as CAH → CAB, CLYB/CECYB → CEYB, YJR → YJB, and DA? → DAX.
+
+Total counted: 1,113 card placements across 37 card types.
+
+Card type	Count
+MX	224
+CD	178
+CEYB	104
+AHK	78
+TAG	68
+TAH	41
+TFC	39
+CAB	38
+CAU	38
+AFR	33
+TCZ	29
+WJ	29
+NN	24
+WY	24
+DFD	22
+MH	21
+ARW	20
+AHU	15
+NP	12
+DBU	10
+RE	9
+YJA	8
+DAX	7
+WM	6
+ALY	4
+DED	4
+DEE	4
+TAJ	4
+WG	4
+DAW	3
+TAL	3
+TDA	3
+TCK	2
+YJB	2
+TAF	1
+TAM	1
+ZKV	1
+I also made downloadable files with gate breakdowns and raw-code variants:
+
+IBM_1620_card_type_counts.xlsx
+
+
+Card Type Counts
+Notes
+Raw Card Codes
+
+
+
+
+
+Pasted text.txt
+Document
+using the above can you make a parts list for each of the card types
+
+Thought for 18m 31s
+Done — I made a parts list by IBM 1620 card type, using the latest card-type counts, the ALD/card schematic information, and your uploaded IBM transistor commercial-equivalent table. The equivalent table maps IBM transistor type numbers to IBM part numbers and commercial equivalents, while the ALD provides card-schematic/card-type context. 
+
+ 
+
+ 
+
+
+Files:
+
+IBM_1620_card_type_parts_list.xlsx
+
+
+Card Type Summary
+Transistor BOM
+Aggregate Transistors
+Non-Transistor Cards
+Transistor Equiv
+Source Notes
+
+
+
+
+
+
+A note on interpretation: this is a card-level transistor parts list with commercial-equivalent substitutions, not yet a complete resistor/capacitor/passive BOM for every card. Where a transistor entry is shown as something like 039/101, I treated it as a variant/interchangeable IBM type group rather than choosing one exact procurement part.
+
+
+
+127-0753-2_IBM_1620_Central_Processing_Unit_Parts_Catalog_May63.pdf
+PDF
+make the parts list complete with passive components and resistors / capacitors. Attached is a parts catalog for the system 
+
+Thought for 14m 46s
+Done — I created a complete IBM 1620 card-type parts-list package with passive components added: resistors, capacitors, diodes, selected inductors/coils, crystals, relays, and transistor equivalents.
+
+I used the IBM 1620 CPU Parts Catalog for the resistor/capacitor/diode catalog references, especially the figures called out for “all resistors and capacitors.” 
+
+ I also kept the transistor commercial-equivalent table you supplied as the transistor substitution source. 
+
+ The Righto SMS card database and card pages were used for schematic/card-type metadata and schematic image references. 
+
+Files:
+
+IBM_1620_card_type_complete_parts_list.xlsx
+
+
+Read Me
+Card Summary
+Detail BOM
+Aggregate BOM
+Catalog Lookup
+Card Chart Crosscheck
+
+
+
+
+
+
+The workbook has separate sheets for Card Summary, Detail BOM, Aggregate BOM, Catalog Lookup, and Card Chart Crosscheck. Rows marked needs review are places where the schematic scan/OCR was ambiguous, so I included the candidate component rather than silently guessing.
+
+
+
+1620 CE System Diagrams Vol 1.pdf
+PDF
+
+1620 CE System Diagrams Vol 2.pdf
+PDF
+
+1620 CE System Diagrams Vol 3.pdf
+PDF
+With these 3 documents, OCR them, Assume no non english letters, deskew and clean up
+
+Thought for 53m 46s
+Done — I OCRed, deskewed/auto-rotated, and conservatively cleaned the three IBM 1620 CE System Diagrams volumes using English OCR. Volumes I and II were image-only scans; Volume III was force-OCRed for consistency. Sources processed: Volume I, Volume II, and Volume III. 
+
+ 
+
+ 
+
+
+OCR PDFs
+
+
+
+
+ASCII-only OCR text sidecars
+
+
+
+
+Bundle
+
+
+
+
+Note: I used conservative cleanup to preserve faint schematic lines and small labels. The ASCII sidecars have non-English/non-ASCII characters stripped. Volume III is much larger because force-OCR plus deskew expanded the image layer.
+
+
+convert volume 3 into schematics
+
+Thought for 15m 54s
+Done — I converted Volume III into a schematic-conversion package: vector SVG pages, page/card indexes, card-block candidates, signal/page-reference candidates, and detected wire/line geometry. Source used: 1620 CE System Diagrams Volume III. 
+
+
+Files:
+
+
+
+
+
+Key CSVs:
+
+
+
+
+
+
+
+Summary:
+
+172 source pages
+
+167 SVG schematic pages
+
+145 pages identified after header/OCR refinement
+
+25 card-schematic pages identified
+
+541 card-block OCR candidates
+
+3,761 signal/page-reference candidates
+
+25,902 detected wire/line segments
+
+The SVGs are editable vector reconstructions, not verified electrical netlists yet. The OCR on small ALD labels is still noisy, so I treated card blocks, signal labels, and wire joins as candidates for review rather than confirmed wiring.
+
+
+IBM TYPE IBM P/N COMMERCIAL EQUIVELENT
+003 2N64
+004 2N113
+008 2N113
+013 344892 2N1303, 2N1309
+014 345763 2N1303, 2N1309
+015 526797 2N380, 2N502A, 2N247, 2N384, 2N500
+016 526880 2N380
+017 2N380
+018 347592 2N380
+019 389000 2N380.
+020 2N1303, 2N1309
+021 526796 2N1303, 2N1309
+022 526898 2N174, PG-5
+023 2N1038
+025 318322 2N1303, 2N309, 2N1381
+026 535441 2N270, 2N324, 2N404, 2N526, R212XC
+028 610371 2N1038, 2N1039, 2N1040, 2N1041, 2N1042, 2N1043
+029 492451 2N527, R212XC
+030 369099 2N224, R212
+032 369100 2N705, 2N2894*, GL-77
+033 318324 2N1303, 2N1309, 1-D, 2N274, 2N503, 2N368
+034 535009 2N1303, 2N1309, 1-D
+035 492452 2N1303, 2N1309, 1-D
+036 207363 2N456, 2N1159, PG-14, 2N1383
+037 208196 2N173, 2N441, 2N442, PG-5
+038 208197 2N379, 2N1412, PG-5, 2N378
+039 2N705, 2N2894*, 2N706
+042 369108 2N242, 2N379, 2N669, PG-20, 2N243, 2N257, 2N268, 2N301, 2N392, 2N1168
+043 2N705, 2N2894*
+044 369119 2N43, 2N44, 2N464, 2N465, 2N467, 2N1008B, 2N1191, 2N1193, 2N241A
+046 369109 2N1303, 2N217
+047 369113 2N2904, 2N1132, T3517
+049 209001 2N277, PG-5
+050 369205 2N553, PG-14
+063 344891 2N377, 2N1302
+071 492450 2N377, 2N647, 2N1302
+075 318323 2N377, 2N647, 2N1302
+083 318325 2N388, 2N1302
+084 369390 2N1893, T4200
+085 2N1302
+086 369087 2N214, 2N557 - not 2N228, not 2N188, corrected by Bob Feretish
+369654 2N1302, 2N1304
+087 369123 2N228
+088 2N228, 2N1304 .
+089 369559 2N228
+090 2N228
+091 369561 2N214, 2N228, 2N557, 2N1302
+092 369562 2N228
+093 369560 2N228
+094 369081 2N228
+095 369205 2N228
+096 369110 2N1302
+097 369114 SL-100, T3111
+098 369126 1341, 3013, 2N708
+099 369213 2N1302
+100 369134 T4200, SL-2, 2N1893, 2N1613
+101 369177 2N705, 2N2894*, GL-77
+102 369179 2N705, 2N2894*, GL-77
+103 369180 2N705, 2N2894*, GL-77
+104 369182 2N705, 2N2894*, GL-77
+105 369183 2N705, 2N2894*, GL-77
+106 369194. 2N705, 2N2894*, GL-77
+107 369195 2N705, 2N2894*, GL-77
+108 369214 2N155, 2N256, 2N307A, PG-5
+112 2N705, 2N2894*
+113 477282 PG-20
+114 369608 2N1303, 2N1309
+116 2N1309
+117 2N1303
+118 369204 2N527, 2N1038, 2N1039, 2N1040, 2N1041, 2N1042, 2N1043, 2N1044, 2N1045, 2N307
+119 369616 PG-20, 2N155, 2N256, 2N307, 2N1309
+120 369628 2N247, 2N380, 2N1515, 2N1517
+121 2N1309
+122 369641 2N2411, SL-35
+123 369648 2N2552, 2N2553, 2N2554, 2N2555, 2N2556, 2N2557, 2N2558
+124 369656 2N705, 2N2894*, GL-77
+125 483012 1-D, 2N1303, 2N1309
+127 369659 2N1303, 2N1309
+128 369662 2N1142, 2N705, 2N2894*
+129 369664 2N1309
+130 369667 PG-20, 2N456, 2N1159
+131 369682 3517, SL-33, 20904, 2N2696
+132 2414801-1766936 PG-7
+133 2414803 PG-20
+134 2414806-2703799 2N1038, 2N1039, 2N1040, 2N1041, 2N1042, 2N1043, 2N1044, 2N1045
+135 2414848 2N705, 2N2894*, GL-77
+136 2414877 FT0019, 2N3251
+138 2414918 2N2696, 3517, 2904
+139 2414938 2N2411, SL-35
+141 2414947 FT0019, 2N2411, 2N3251
+142 2N2904
+143 2414971 FT0019
+150 2391139 2N2904
+151 369215 2N955
+152 369587 2N955
+153 369588 2N955
+154 369589 2N955
+155 2N955
+156 2N955
+157 2N955
+158 2N955
+159 2N955
+160 369669 2N955
+161 369683 2N955
+162 2N955
+164 2N955
+165 2N955
+167 369597 2N388, 2N302
+168 369602 42C6, 2N2193, 2N2863
+169 369605 1341
+170 369609 2N377, 2N647, 2N1302
+171 369618 4205, SL-14, 2N1613
+173 369624 4200, SL-14, 2N1893, 2N1613
+174 369625 1343, SL-23
+175 369632 5B, 2N989, 2N2418, 2N2419, 2N999
+178 369686 T4206, SL-98, 2N3252, 2N2863
+179 369687 74206, PC-80, SL-08, 2N2863, 2N3252
+180 369688 SL-98, 2N3252, 2N2863
+181 369689 SL-5, 2N3252, 2N2863
+182 369690 0110, SL-14, 2N3252, 2N2863
+183 369691 T4206, SL-14, 2N3252, 2N2863
+184 369692 SL98, 3252, 2N2863
+185 369693 2N2863, 2N862
+186 369694 SL-2, 2N2537
+187 369695 SL-5, 2N2537
+188 369696 0018, SL-14, 2N3252, 2N2863
+189 2414972 H84
+190 369697 SL-14, 2N3252, 2N2863
+192 2414804 2N1302
+193 2414811 2N3011
+194 2414818 SL-1, FT1312, 2N774
+201 2391132 3517
+203 2391160 1303
+204 2391201 PG-5
+205 2391208. T3517, 2N2904
+206 2391237 T1713, 2N2894
+207 2391240 T1713, 2N3829.
+208 2391243 2N3304
+209 2391246 GL-77, 2N964
+216 2391328 GL-77, 2N705, 2N2894*'
+219 2391733 PG-7
+251 2414849 2N2484
+252 2414863 SM3298
+253 2N774
+254 2414878 2N1893, 2N1613
+255 2414879 SL-23, 2N706
+256 2414880 2N2639
+257 2414892 PL-28, H-85
+258 2414900 3N74
+259 2414921 SL-5, 2537, 2N2848
+260 2414922 SL-4, T4206, 2N2863
+261 2414923 4205
+263 2414944 PL-14
+265 2414950- 2N744
+266 2414952 H-84
+267 2390102 SL-97, 2N3252, 2N2537
+268 2390103 SL-97, 0125, 2N3252
+269 2390101 SL-97, 2N3252, 2N2537
+270 2390104 SL-97, 2N2537, 2N3252
+272 2414974 2N2484
+273 2414977 0018, SL-2, 2N2863
+274 2391015 SL-26
+275 2391019 PL-28
+278 2391057 1302
+279 2391059 PL-14, H-84
+283 2391114 H-86, 2N3418
+284 2391117 T4206, PC-80, SL-98, 2N3252
+285 2391118 T0018
+286 2391131 FT0018
+288 2301145 2N930
+289 2391155 2N3011
+290 2391156 T0062, 2N3013
+291 2391170 SL-98, PC-80
+292 2391171 H-84, PL-82, 2N3418
+293 2391184 2N3252, 0125, SL-97
+294 2391207 2N3252
+295 2391224 2N2639, 10-H
+296 2391236 T0059, 2N3303
+297 2391238 T0016, 2N3011
+298 2391241 T0062, 2N3013
+299 2391242 T1211, 2N918
+300 2391245 1211, 2N918
+351 2391272 2N918
+353 2391313 2N2243
+354 2391319 2N3252, 4206
+355 231329 SL-1, FT1312
+357 2391345 PL-64, 2N3771
+358 2391346 PL-64, H-98, 2N3771
+359 2391347 SL-87
+361 2391367 PL-14
+363 2391666 0125, 2N3252
+364 2391667 PL-64, 2N3772
+365 2391723 SL-87
+366 2391766 FT0047, SL-97, 2N3252
+367 2391806 SL-87
+
+DIODES
+F1 2391164 U112
+F2 2391312 U112
+F3 2208532 2N3608
+F4 2186859 FN3668
+F5 2262489 2N4340
+D1 30 AMP 150V 127324
+10 AMP 100V 598353
+10 AMP 200V 216197
+25 AMP 400V 5261455
+12 AMP 400V 5312673
+
+
+Close
