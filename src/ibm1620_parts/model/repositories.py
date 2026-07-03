@@ -3,6 +3,7 @@ from __future__ import annotations
 import sqlite3
 from datetime import UTC, datetime
 from pathlib import Path
+from typing import Any
 
 
 def get_connection(db_path: Path) -> sqlite3.Connection:
@@ -165,6 +166,68 @@ def fetch_raw_part_candidates(conn: sqlite3.Connection):
         SELECT source_document, source_page, figure_number, item_number, ibm_part_number,
                description, quantity, confidence, review_status, raw_text, notes
         FROM raw_part_candidates
+        ORDER BY source_document, source_page, raw_part_candidate_id
+        """
+    ).fetchall()
+
+
+def fetch_review_candidates(
+    conn: sqlite3.Connection,
+    *,
+    source_page: int | None = None,
+    figure_number: str | None = None,
+    review_status: str | None = None,
+    confidence_max: float | None = None,
+    blank_description_only: bool = False,
+):
+    query = """
+        SELECT rpc.raw_part_candidate_id, rpc.source_document, rpc.source_page, rpc.figure_number,
+               rpc.item_number, rpc.ibm_part_number, rpc.description, rpc.quantity,
+               rpc.confidence, rpc.review_status, rpc.raw_text, rpc.notes,
+               p.image_path, p.page_type
+        FROM raw_part_candidates rpc
+        LEFT JOIN pages p ON p.page_id = rpc.page_id
+        WHERE 1 = 1
+    """
+    params: list[Any] = []
+    if source_page is not None:
+        query += " AND rpc.source_page = ?"
+        params.append(source_page)
+    if figure_number:
+        query += " AND rpc.figure_number = ?"
+        params.append(figure_number)
+    if review_status:
+        query += " AND rpc.review_status = ?"
+        params.append(review_status)
+    if confidence_max is not None:
+        query += " AND rpc.confidence <= ?"
+        params.append(confidence_max)
+    if blank_description_only:
+        query += " AND (rpc.description IS NULL OR trim(rpc.description) = '')"
+
+    query += " ORDER BY rpc.source_page, rpc.figure_number, rpc.raw_part_candidate_id"
+    return conn.execute(query, params).fetchall()
+
+
+def update_raw_part_candidate(conn: sqlite3.Connection, candidate_id: int, updates: dict[str, Any]) -> None:
+    allowed_fields = {"item_number", "description", "quantity", "review_status", "notes"}
+    update_items = [(field, value) for field, value in updates.items() if field in allowed_fields]
+    if not update_items:
+        return
+
+    assignments = ", ".join(f"{field} = ?" for field, _ in update_items)
+    values = [value for _, value in update_items]
+    values.append(candidate_id)
+    conn.execute(f"UPDATE raw_part_candidates SET {assignments} WHERE raw_part_candidate_id = ?", values)
+
+
+def fetch_reviewed_part_candidates(conn: sqlite3.Connection):
+    return conn.execute(
+        """
+        SELECT source_document, source_page, figure_number, item_number, ibm_part_number,
+               description, quantity, confidence, review_status, raw_text, notes
+        FROM raw_part_candidates
+        WHERE review_status IN ('reviewed_ok', 'corrected')
         ORDER BY source_document, source_page, raw_part_candidate_id
         """
     ).fetchall()

@@ -4,10 +4,11 @@ import argparse
 import sys
 from pathlib import Path
 
-from ibm1620_parts.export.csv_exporter import export_raw_parts_csv
+from ibm1620_parts.export.csv_exporter import export_raw_parts_csv, export_reviewed_parts_csv
 from ibm1620_parts.extractors.parts_catalog import extract_parts_catalog
 from ibm1620_parts.ingest.pdf_indexer import ingest_pdf
 from ibm1620_parts.model.repositories import initialize_database
+from ibm1620_parts.review_app import launch_review_app
 
 
 def _require_existing_file(path: Path, label: str) -> Path:
@@ -42,6 +43,13 @@ def build_parser() -> argparse.ArgumentParser:
     export.add_argument("--db", required=True)
     export.add_argument("--out", required=True)
 
+    export_reviewed = subparsers.add_parser("export-reviewed-parts", help="Export reviewed parts CSV")
+    export_reviewed.add_argument("--db", required=True)
+    export_reviewed.add_argument("--out", required=True)
+
+    review = subparsers.add_parser("review-db", help="Open desktop review workflow")
+    review.add_argument("--db")
+
     return parser
 
 
@@ -64,6 +72,14 @@ def main() -> int:
 
         if args.command == "export-raw-parts":
             export_raw_parts_csv(_require_existing_database(Path(args.db)), Path(args.out))
+            return 0
+
+        if args.command == "export-reviewed-parts":
+            export_reviewed_parts_csv(_require_existing_database(Path(args.db)), Path(args.out))
+            return 0
+
+        if args.command == "review-db":
+            launch_review_app(Path(args.db) if args.db else None)
             return 0
 
         parser.error(f"Unknown command: {args.command}")
