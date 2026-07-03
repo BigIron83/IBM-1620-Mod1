@@ -20,3 +20,11 @@ Sprint 1 delivers a local CLI-first foundation for IBM 1620 PDF ingestion and ra
 - Add explicit page index export and extraction summaries.
 - Add module, parts, and evidence tables for later milestones.
 - Begin Sprint 2 review workflow and UI design.
+
+## Sprint 2 TODO
+
+- Add review/edit workflow for extracted rows.
+- Add page image viewer for source evidence inspection.
+- Add row confidence filtering in the review workflow.
+- Add export separation for reviewed rows vs raw rows.
+- Add a later column-aware parser for stronger item-number recovery.
