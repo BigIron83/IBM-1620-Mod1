@@ -33,8 +33,27 @@ python -m ibm1620_parts.cli init-db --db data/extracted/ibm1620.db
 python -m ibm1620_parts.cli ingest-pdf --db data/extracted/ibm1620.db --pdf data/source_pdfs/127-0753-2_IBM_1620_Central_Processing_Unit_Parts_Catalog_May63.pdf --render-pages
 python -m ibm1620_parts.cli extract-parts-catalog --db data/extracted/ibm1620.db --document 127-0753-2_IBM_1620_Central_Processing_Unit_Parts_Catalog_May63.pdf
 python -m ibm1620_parts.cli export-raw-parts --db data/extracted/ibm1620.db --out data/exports/parts_catalog_raw.csv
+python -m ibm1620_parts.cli export-reviewed-parts --db data/extracted/ibm1620.db --out data/exports/reviewed_parts.csv
+python -m ibm1620_parts.cli review-db --db data/extracted/ibm1620.db
 pytest
 ```
+
+## Review workflow
+
+The Sprint 2 review window supports:
+
+- opening a SQLite database,
+- filtering raw extracted rows,
+- sorting table columns,
+- viewing the rendered page image for the selected row,
+- editing item number, description, quantity, review status, and notes,
+- saving corrections back to SQLite,
+- exporting reviewed rows separately from raw rows.
+
+Useful shortcuts:
+
+- `Ctrl+S` — save current row
+- `Ctrl+Down` — move to next row
 
 ## Notes
 
